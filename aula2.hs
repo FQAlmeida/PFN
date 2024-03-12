@@ -1,1 +1,2 @@
-area_circulo raio = pi * raio ** 2
+areaCirculo :: Floating a => a -> a
+areaCirculo raio = pi * raio ** 2
