@@ -44,6 +44,8 @@ _primo m n
 primo :: (Num t, Integral t) => t -> Bool
 primo m = not (_primo m 2)
 
+__primo n = (n == 2 || n `mod` 2 /= 0) && length [x | x <- [3..isqrt n], n `mod` x == 0] == 0
+
 _seriePI :: (Integral t1, Fractional t2) => t1 -> t1 -> t1 -> t2
 _seriePI n m a
   | m <= n = fromIntegral a * (4 / fromIntegral m) + _seriePI n (m + 2) (-1 * a)
