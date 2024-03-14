@@ -23,14 +23,13 @@ _raizes a b delta
 
 raizes :: (Floating a, Eq a, Ord a) => a -> a -> a -> [a]
 raizes a b c =
-  let delta = (b ** 2.0) - 4.0 * a * c
+  let delta = b ** 2.0 - 4.0 * a * c
    in _raizes a b delta
 
-raizesP :: (Floating a, Eq a, Ord a, Show a) => [a] -> [Char]
-raizesP raizes
-  | length raizes >= 2 = "Raizes: " ++ show (head raizes) ++ " " ++ show (raizes !! 1)
-  | length raizes == 1 = "Raiz: " ++ show (head raizes)
-  | otherwise = "Não há raizes"
+raizesP :: (Floating a, Eq a, Ord a, Show a) => [a] -> String
+raizesP [r1, r2] = "Raizes: " ++ show r1 ++ " " ++ show r2
+raizesP [r1] = "Raiz: " ++ show r1
+raizesP [] = "Não há raizes"
 
 raizesPrint :: (Floating a, Ord a, Show a) => a -> a -> a -> IO ()
 raizesPrint a b c = putStrLn (raizesP (raizes a b c))
