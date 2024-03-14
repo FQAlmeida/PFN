@@ -25,3 +25,12 @@ raizes :: (Floating a, Eq a, Ord a) => a -> a -> a -> [a]
 raizes a b c =
   let delta = (b ** 2.0) - 4.0 * a * c
    in _raizes a b delta
+
+raizesP :: (Floating a, Eq a, Ord a, Show a) => [a]  -> [Char]
+raizesP raizes = case  raizes of
+  | [r1, r2] >= 2 = "Raizes: " ++ show(head rs) ++ " " ++ show(rs!!1)
+  | [r1] == 1 = "Raiz: " ++ show(head rs)
+  | otherwise = "Não há raizes"
+
+raizesPrint :: (Floating a, Ord a, Show a) => a -> a -> a -> IO ()
+raizesPrint a b c = putStrLn (raizesP a b c)
