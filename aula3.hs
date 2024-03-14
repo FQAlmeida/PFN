@@ -33,4 +33,4 @@ raizesP raizes
   | otherwise = "Não há raizes"
 
 raizesPrint :: (Floating a, Ord a, Show a) => a -> a -> a -> IO ()
-raizesPrint a b c = putStrLn (raizesP a b c)
+raizesPrint a b c = putStrLn (raizesP (raizes a b c))
