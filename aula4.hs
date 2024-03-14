@@ -1,0 +1,1 @@
+-- | This class is focused on the second grade polynomial exercise and the first 3 exercises of the list.
