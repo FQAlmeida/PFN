@@ -36,8 +36,8 @@ _raizesP (r1 : rs) = " " ++ show r1 ++ _raizesP rs
 _raizesP [] = ""
 
 raizesP :: (Floating a, Eq a, Ord a, Show a) => [a] -> String
-raizesP (r1 : r2 : rs) = "Raizes:" ++ _raizesP (r1 : r2 : rs)
-raizesP (r1 : rs) = "Raiz:" ++ _raizesP (r1 : rs)
+raizesP [r1] = "Raiz: " ++ show r1
+raizesP (r1 : rs) = "Raizes:" ++ _raizesP (r1 : rs)
 raizesP [] = "Não há raizes"
 
 raizesPrint :: (Floating a, Ord a, Show a) => a -> a -> a -> IO ()
