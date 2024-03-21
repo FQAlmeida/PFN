@@ -26,12 +26,12 @@ somaPot2m m n
   | otherwise = 2 ^ n * m + somaPot2m m (n - 1)
 
 _somaPot2m :: (Eq a, Integral a, Enum a) => a -> a -> a
-_somaPot2m m n = sum (map (\n -> 2 ^ n * m) [0 .. n])
+_somaPot2m m n = sum (map (\a -> 2 ^ a * m) [0 .. n])
 
 isDiv :: (Num a, Integral a) => a -> a -> Bool
-isDiv num div = num `mod` div == 0
+isDiv num divisor = num `mod` divisor == 0
 
-isqrt :: (Integral t) => t -> t
+isqrt :: Integral a => a -> a
 isqrt = floor . sqrt . fromIntegral
 
 _primo :: (Num t, Eq t, Integral t) => t -> t -> Bool
@@ -57,7 +57,7 @@ seriePI n = _seriePI n 1 1
 
 mapEvenIndex :: (t -> t) -> [t] -> [t]
 mapEvenIndex f (x : s : xs) = x : f s : mapEvenIndex f xs
-mapEvenIndex f xs = xs
+mapEvenIndex _ xs = xs
 
 __seriePI :: (Fractional a, Enum a) => a -> a
 __seriePI n = sum (map (4 /) (mapEvenIndex (* (-1)) [1, 3 .. n]))

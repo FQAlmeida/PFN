@@ -17,19 +17,14 @@ _funIntervalo x
 
 _raizes :: (Floating a, Eq a, Ord a) => a -> a -> a -> [a]
 _raizes a b delta
-  | delta > 0 = [(-b + sqrt delta) / (2 * a), (-b - sqrt delta) / (2 * a)]
-  | delta == 0 = [-(b / (2 * a))]
+  | delta > 0 = [(- b + sqrt delta) / (2 * a), (- b - sqrt delta) / (2 * a)]
+  | delta == 0 = [- (b / (2 * a))]
   | otherwise = []
 
 raizes :: (Floating a, Eq a, Ord a) => a -> a -> a -> [a]
 raizes a b c =
   let delta = b ** 2.0 - 4.0 * a * c
    in _raizes a b delta
-
-__raizesP :: (Floating a, Eq a, Ord a, Show a) => [a] -> String
-__raizesP [r1, r2] = "Raizes: " ++ show r1 ++ " " ++ show r2
-__raizesP [r1] = "Raiz: " ++ show r1
-__raizesP [] = "Não há raizes"
 
 _raizesP :: (Floating a, Eq a, Ord a, Show a) => [a] -> String
 _raizesP (r1 : rs) = " " ++ show r1 ++ _raizesP rs
