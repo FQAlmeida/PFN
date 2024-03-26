@@ -45,11 +45,11 @@ primo :: (Num t, Integral t) => t -> Bool
 primo m = not (_primo m 2)
 
 __primo :: (Integral a) => a -> Bool
-__primo n = (n == 2 || odd n) && null ([x | x <- [3 .. isqrt n], n `mod` x == 0])
+__primo n = (n == 2 || odd n) && null ([x | x <- [3, 5 .. isqrt n], n `mod` x == 0])
 
 _seriePI :: (Integral t1, Fractional t2) => t1 -> t1 -> t1 -> t2
 _seriePI n m a
-  | m <= n = fromIntegral a * (4 / fromIntegral m) + _seriePI n (m + 2) (-a)
+  | m <= n = fromIntegral a * (4 / fromIntegral m) + _seriePI n (m + 2) (- a)
   | otherwise = 0
 
 seriePI :: (Integral t, Fractional t1) => t -> t1
