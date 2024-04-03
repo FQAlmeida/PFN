@@ -1,3 +1,5 @@
+module Aulas.Aula7 where
+
 -- 1 Construa uma lista utilizando compreensão de listas, cujo o conjunto é definido por: A = n x3|x ∈ N, x ≤ 8
 listaCompr :: [Integer]
 listaCompr = [x * 3 | x <- [1 .. 8]]

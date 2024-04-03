@@ -1,3 +1,5 @@
+module Aulas.Aula3 where
+
 funIntervalo :: (Ord a, Num a) => a -> String
 funIntervalo x = if x < 5 && x > 1 then "X está dentro do intervalo" else "X não está dentro do intervalo"
 
