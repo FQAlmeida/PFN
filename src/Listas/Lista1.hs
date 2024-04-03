@@ -1,5 +1,5 @@
 module Listas.Lista1 where
-  
+
 ehTriangulo :: (Ord a, Num a) => a -> a -> a -> Bool
 ehTriangulo l1 l2 l3 = l1 + l2 > l3 && l1 + l3 > l2 && l3 + l2 > l1
 
@@ -33,7 +33,7 @@ _somaPot2m m n = sum (map (\a -> 2 ^ a * m) [0 .. n])
 isDiv :: (Num a, Integral a) => a -> a -> Bool
 isDiv num divisor = num `mod` divisor == 0
 
-isqrt :: Integral a => a -> a
+isqrt :: (Integral a) => a -> a
 isqrt = floor . sqrt . fromIntegral
 
 _primo :: (Num t, Eq t, Integral t) => t -> t -> Bool
@@ -47,7 +47,7 @@ primo :: (Num t, Integral t) => t -> Bool
 primo m = not (_primo m 2)
 
 __primo :: (Integral a) => a -> Bool
-__primo n = (n == 2 || odd n) && null ([x | x <- [3 .. isqrt n], n `mod` x == 0])
+__primo n = (n == 2 || odd n) && null ([x | x <- [3, 5 .. isqrt n], n `mod` x == 0])
 
 _seriePI :: (Integral t1, Fractional t2) => t1 -> t1 -> t1 -> t2
 _seriePI n m a
