@@ -58,10 +58,10 @@ soma2 (x1 : xs1) (x2 : xs2) = (x1 + x2) : soma2 xs1 xs2
 soma2 _ _ = []
 
 _soma2 :: (Num a) => [a] -> [a] -> [a]
-_soma2 (x1 : xs1) (x2 : xs2) = (x1 + x2) : soma2 xs1 xs2
 _soma2 (x1 : xs1) [] = x1 : _soma2 xs1 []
 _soma2 [] (x2 : xs2) = x2 : _soma2 [] xs2
-_soma2 _ _ = []
+_soma2 (x1 : xs1) (x2 : xs2) = (x1 + x2) : soma2 xs1 xs2
+_soma2 [] [] = []
 
 __soma2 :: [Integer] -> [Integer] -> [Integer]
 __soma2 = zipWith (+)
