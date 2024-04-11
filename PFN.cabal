@@ -64,7 +64,13 @@ library
         Aulas.Aula4
         Aulas.Aula5
         Aulas.Aula6
+        Aulas.Aula7
+        Aulas.Aula8
+        Aulas.Aula9
+        Aulas.Aula10
+        Aulas.Exercicios0
         Listas.Lista1
+        Listas.Lista2
 
     -- Modules included in this library but not exported.
     -- other-modules:
