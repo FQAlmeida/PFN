@@ -1,3 +1,5 @@
+module Aulas.Aula14 where
+
 -- Exercício 01: Crie uma função ehTriangulo que determina se três lados x, y, z podem formar um triângulo.
 
 -- Exercício 02: Crie uma função tipoTriangulo que determina o tipo do triângulo formado pelos três lados x, y, z.
