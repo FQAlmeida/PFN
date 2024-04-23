@@ -71,10 +71,10 @@ __soma2 = zipWith (+)
 -- Exemplo: pot2 4 => [2, 4, 8, 16]
 
 pot2 :: (Integral b, Num a) => b -> [a]
-pot2 n = [2 ^ x | x <- [0 .. n]]
+pot2 n = [2 ^ x | x <- [1 .. n]]
 
 _pot2 :: (Integral a, Num b) => a -> [b]
-_pot2 n = map (2 ^) [0 .. n]
+_pot2 n = map (2 ^) [1 .. n]
 
 -- 7. Declare uma função que receba duas listas previamente ordenadas e faça a intercalação
 -- (merge) dos elementos tendo como resultado a junção das duas listas em uma lista também
