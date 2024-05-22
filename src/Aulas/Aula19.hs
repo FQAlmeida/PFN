@@ -63,10 +63,10 @@ num2string'' = transforma num2string'
 -- n
 
 polin :: [Double] -> Double
-polin termos = foldr (+) (0 :: Double) (map (\(i, x) -> x `div` i) (zip [(1 :: Double) ..] (map (** 2) termos)))
+polin termos = foldr (+) (0 :: Double) (map (\(i, x) -> x / i) (zip [(1 :: Double) ..] (map (** 2) termos)))
 
 polin' :: [Double] -> Double
-polin' termos = foldr ((+) . (\(i, x) -> x `div` i)) (0 :: Double) (zip [(1 :: Double) ..] (map (** 2) termos))
+polin' termos = foldr ((+) . (\(i, x) -> x / i)) (0 :: Double) (zip [(1 :: Double) ..] (map (** 2) termos))
 
 -- 3) Utilizando as funções implementadas anteriormente calcule o valor:
 -- ex = 1 + x1
@@ -79,16 +79,19 @@ fat :: (Eq a, Num a, Enum a) => a -> a
 fat 0 = 1
 fat n = product [1 .. n]
 
-eulerPowX :: (Fractional b, Integral b) => b -> b
-eulerPowX x = foldr (+) 0 (map (\i -> (x ^ i) / fat i) [0 ..])
+eulerPowX :: Double -> Integer -> Double
+eulerPowX x n = foldr (+) 0 (map (\i -> (x ** i) / fat i) [0 .. fromIntegral n])
 
-eulerPowX''' :: (Fractional b, Integral b) => b -> b
-eulerPowX''' x = foldr ((+) . (\i -> (x ^ i) / fat i)) 0 [0 ..]
+eulerPowX''' :: Double -> Integer -> Double
+eulerPowX''' x n = foldr ((+) . (\i -> (x ** i) / fat i)) 0 [0 .. fromIntegral n]
 
-eulerPowX'' [(i, fatorial, t) : xs] x = (i + 1, next_fat, (x ^ i) / next_fat) : (i, fatorial, t) : xs
+eulerPowX'' :: Double -> [(Integer, Double, Double)] -> Integer -> [(Integer, Double, Double)]
+eulerPowX'' x ((i, fatorial, t) : xs) _ = (i + 1, next_fat, (x ^ i) / next_fat) : (i, fatorial, t) : xs
   where
-    next_fat = fatorial * i
-eulerPowX'' _ _ = error "não implementado"
+    next_fat = fatorial * fromIntegral i
+eulerPowX'' _ _ _ = error "não implementado"
 
-eulerPowX' :: Integral a => a -> a -> Double
-eulerPowX' x n = foldr (+) 0 (map (\(_, _, t) -> t) (foldr (eulerPowX'' x) [(0, 1, 1)] [0 .. n]))
+eulerPowX' :: Double -> Integer -> Double
+eulerPowX' x n = foldr ((+) . (\(_, _, t) -> t)) 0 (foldl eulerP [(1 :: Integer, 1 :: Double, 1 :: Double)] [1 :: Integer .. n])
+  where
+    eulerP = eulerPowX'' x
