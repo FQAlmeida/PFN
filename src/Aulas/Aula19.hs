@@ -63,7 +63,13 @@ num2string'' = transforma num2string'
 -- n
 
 polin :: [Double] -> Double
-polin termos = foldr (+) (0 :: Double) (map (\(i, x) -> x / i) (zip [(1 :: Double) ..] (map (** 2) termos)))
+polin termos = foldl (+) (0 :: Double) (map (\(i, x) -> x / i) (zip [(1 :: Double) ..] (map (** 2) termos)))
+
+polin'' :: [Double] -> Double
+polin'' termos = foldl (+) (0 :: Double) (zipWith (/) (map (** 2) termos) [(1 :: Double) ..])
+
+polin''' :: [Double] -> Double
+polin''' termos = sum (zipWith (/) (map (** 2) termos) [(1 :: Double) ..])
 
 polin' :: [Double] -> Double
 polin' termos = foldr ((+) . (\(i, x) -> x / i)) (0 :: Double) (zip [(1 :: Double) ..] (map (** 2) termos))
@@ -80,10 +86,10 @@ fat 0 = 1
 fat n = product [1 .. n]
 
 eulerPowX :: Double -> Integer -> Double
-eulerPowX x n = foldr (+) 0 (map (\i -> (x ** i) / fat i) [0 .. fromIntegral n])
+eulerPowX x n = foldl (+) 1 (map (\i -> (x ** i) / fat i) [1 .. fromIntegral n])
 
 eulerPowX''' :: Double -> Integer -> Double
-eulerPowX''' x n = foldr ((+) . (\i -> (x ** i) / fat i)) 0 [0 .. fromIntegral n]
+eulerPowX''' x n = foldr ((+) . (\i -> (x ** i) / fat i)) 1 [1 .. fromIntegral n]
 
 eulerPowX'' :: Double -> [(Integer, Double, Double)] -> Integer -> [(Integer, Double, Double)]
 eulerPowX'' x ((i, fatorial, t) : xs) _ = (i + 1, next_fat, (x ^ i) / next_fat) : (i, fatorial, t) : xs
@@ -95,3 +101,10 @@ eulerPowX' :: Double -> Integer -> Double
 eulerPowX' x n = foldr ((+) . (\(_, _, t) -> t)) 0 (foldl eulerP [(1 :: Integer, 1 :: Double, 1 :: Double)] [1 :: Integer .. n])
   where
     eulerP = eulerPowX'' x
+
+probSum' :: [Double] -> Double -> [Double]
+probSum' [] prob = [prob]
+probSum' acc prob = acc ++ [last acc + prob]
+
+probSum :: [Double] -> [Double]
+probSum = foldl probSum' []
