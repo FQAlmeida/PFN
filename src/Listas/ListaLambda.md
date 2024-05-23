@@ -1,10 +1,10 @@
 ### 1) Reescreva os seguintes termos utilizando parênteses explicitamente em volta de cada subtermo.
     a)  a b c d
-        (a(b(c(d))))
+        ((((a) b) c) d)
     b)  λq.λi.q
-        (λq.λi.q)
+        λq.(λi.q)
     c)  λx.λy.λz.x z (y z)
-        (λx.λy.λz.x) (z) (y (z))
+        λx.(λy.(λz.x)) (((z) y) z)
 
 ### 2) Para os seguintes termos, digam que variáveis estão livres, e que variáveis estão ligadas (e a que λ!).
     a) λs.s z λq.s q
@@ -14,13 +14,15 @@
 
 ### 3) Aplique reduções β às expressões abaixo, os reduzindo à forma normal (isto é, a um formato onde não é mais possível aplicar reduções).
     a)  (λz.z) (λq.q q) (λs.s a)
-        (λz.z) (λq.q q) (a)
-        (λz.z) (q) (a)
+        (λz.z) (λq.q q) (λs.s a)
+        (λz.z) q a
         q a
+        
     b)  (λs.λq.s q q) (λa.a) b
         (λq.q q) (λa.a) b
         q (λa.a) b
         q b
+    
     c)  (λs.λq.s q q) (λx.x) c
         (λq.q q ) (λx.x) c
         (q) (λx.x) c
@@ -36,6 +38,7 @@
         52
     c)  (λf.f (f 10)) (λx.x + 2)
         (f 10) (λx.x + 2)
+        (f 10) + 2
     d)  (λf.f) (λx.x) 51
         (λx.x) 51
         51
