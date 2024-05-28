@@ -78,10 +78,12 @@ library
         Aulas.Aula18
         Aulas.Aula19
         Aulas.Aula20
+        Aulas.Aula21
         Aulas.Exercicios0
         Provas.P1
         Listas.Lista1
         Listas.Lista2
+        Listas.Lista3
 
     -- Modules included in this library but not exported.
     -- other-modules:

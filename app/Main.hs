@@ -1,7 +1,6 @@
 module Main where
 
-import qualified Aulas.Aula6 (taylorSerie)
+import Listas.Lista3 (mainLista3)
 
 main :: IO ()
-main = do
-  print (Aulas.Aula6.taylorSerie 10.0 5)
+main = mainLista3
