@@ -15,9 +15,9 @@ type Palavra = String
 
 type HashTable k v = BasicHashTable k v
 
-readDoc :: IO Doc
-readDoc = do
-  readFile "data/alice_haskell.txt"
+readDoc :: FilePath -> IO String
+readDoc filepath = do
+  readFile filepath
 
 -- O problema de gerar os índices pode ser dividido nos seguintes subproblemas:
 -- a) Separar o documento em linhas: lines :: Doc → [Linha]
@@ -51,7 +51,11 @@ ordenarPalavras = sortBy (\(_, p1) (_, p2) -> compare p1 p2)
 -- números das linhas em que a palavra ocorre:
 -- agrupar :: [(Int, Palavra)] → [([Int], Palavra)]
 agrupar :: [(Int, Palavra)] -> [([Int], Palavra)]
-agrupar palavras_ordenadas = map (\x -> (map fst x, snd (head x))) $ groupBy (\(_, p1) (_, p2) -> p1 == p2) palavras_ordenadas
+agrupar palavras_ordenadas =
+  map (\x -> (map fst x, snd (head x))) $
+    groupBy
+      (\(_, p1) (_, p2) -> p1 == p2)
+      palavras_ordenadas
 
 -- f) Eliminar,  da  lista  de  números  de  linhas  em  que  cada  palavra  ocorre,  as  repetições  de  um
 -- mesmo número de linha:
@@ -88,9 +92,9 @@ printIndices indices = do
 
 mainLista3 :: IO ()
 mainLista3 = do
-  doc <- readDoc
+  doc <- readDoc "data/alice_haskell.txt"
   indices <- construirIndiceHashMap doc
   fmt_indices <- printIndices indices
   print "---------------------------------------------------------------------------------"
-  print fmt_indices
+  putStrLn fmt_indices
   print "---------------------------------------------------------------------------------"
