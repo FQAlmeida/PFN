@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-type-defaults #-}
 module Listas.Lista1 where
 
 ehTriangulo :: (Ord a, Num a) => a -> a -> a -> Bool
@@ -34,7 +35,7 @@ isDiv :: (Num a, Integral a) => a -> a -> Bool
 isDiv num divisor = num `mod` divisor == 0
 
 isqrt :: (Integral a) => a -> a
-isqrt = floor . sqrt . fromIntegral
+isqrt x = round $ sqrt $ fromIntegral x
 
 _primo :: (Num t, Eq t, Integral t) => t -> t -> Bool
 _primo m n

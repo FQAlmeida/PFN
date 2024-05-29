@@ -1,4 +1,4 @@
-Este é um exemplo de texto pequeno com palavras repetidas.
-Repetidas vezes, as palavras se repetem neste texto.
-Texto pequeno, mas com repetições de palavras.
-Palavras repetidas são comuns em textos pequenos.
+Este é um exemplo de um texto curto com palavras palavras repetidas repetidas.
+Palavras repetidas repetidas aparecem juntas nesta linha.
+Texto curto curto, mas com palavras repetidas repetidas.
+Palavras que são repetidas repetidas são comuns em textos curtos curtos.
