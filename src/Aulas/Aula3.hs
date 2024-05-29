@@ -19,8 +19,8 @@ _funIntervalo x
 
 _raizes :: (Floating a, Eq a, Ord a) => a -> a -> a -> [a]
 _raizes a b delta
-  | delta > 0 = [(- b + sqrt delta) / (2 * a), (- b - sqrt delta) / (2 * a)]
-  | delta == 0 = [- (b / (2 * a))]
+  | delta > 0 = [(-b + sqrt delta) / (2 * a), (-b - sqrt delta) / (2 * a)]
+  | delta == 0 = [-(b / (2 * a))]
   | otherwise = []
 
 raizes :: (Floating a, Eq a, Ord a) => a -> a -> a -> [a]

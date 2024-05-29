@@ -1,4 +1,5 @@
 {-# OPTIONS_GHC -Wno-type-defaults #-}
+
 module Listas.Lista1 where
 
 ehTriangulo :: (Ord a, Num a) => a -> a -> a -> Bool

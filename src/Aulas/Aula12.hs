@@ -5,7 +5,7 @@ module Aulas.Aula12 where
 -- (1) Define a function productList :: [Int] → Int which returns the product of a list
 -- of integers. You should take the product of the empty list to be 1.
 
-productList :: Num a => [a] -> a
+productList :: (Num a) => [a] -> a
 productList = product
 
 -- (2) Define a function myand :: [Bool ] → Bool which returns the conjunction of a
@@ -75,22 +75,21 @@ maxList lista = maxValue
 
 _minList :: [Int] -> Int
 _minList [x] = x
-_minList (x:xs)
-    | x < minValue = x
-    | otherwise = minValue
-    where
-        minValue = minList xs
+_minList (x : xs)
+  | x < minValue = x
+  | otherwise = minValue
+  where
+    minValue = minList xs
 _minList [] = error "Empty list"
 
 _maxList :: [Int] -> Int
 _maxList [x] = x
-_maxList (x:xs)
-    | x > maxValue = x
-    | otherwise = maxValue
-    where
-        maxValue = maxList xs
+_maxList (x : xs)
+  | x > maxValue = x
+  | otherwise = maxValue
+  where
+    maxValue = maxList xs
 _maxList [] = error "Empty list"
-
 
 -- (7) Using the function iSort defined in question (5) redefine the function ins so that
 -- the list is sorted in descending order.
@@ -105,12 +104,12 @@ _ins x (y : ys)
 -- in addition to outputting a list in ascending order, duplicates are removed. For
 -- example, iSort [2, 1, 4, 1, 2] = [1, 2, 4].
 
-concatDeduplicated :: Eq a => a -> [a] -> [a]
+concatDeduplicated :: (Eq a) => a -> [a] -> [a]
 concatDeduplicated x lista
-    | x `elem` lista = lista
-    | otherwise = x:lista
+  | x `elem` lista = lista
+  | otherwise = x : lista
 
-concatDeduplicatedDup :: Eq a => a -> a -> [a] -> [a]
+concatDeduplicatedDup :: (Eq a) => a -> a -> [a] -> [a]
 concatDeduplicatedDup x y lista = concatDeduplicated x (concatDeduplicated y lista)
 
 -- TODO (Otavio): FIX, it is not removing all duplicates
@@ -135,14 +134,13 @@ memberNum [] _ = 0
 -- in the list xs. Give a definition of member which uses the function memberNum
 -- that you defined as the answer to question (9).
 
-member :: Eq t => [t] -> t -> Bool
-member xs x = memberNum xs x > (0::Integer)
-
+member :: (Eq t) => [t] -> t -> Bool
+member xs x = memberNum xs x > (0 :: Integer)
 
 -- (11) Redefine the function member of question (10) so that it no longer makes use of
 -- memberNum (from question (9)).
 
-_member :: Eq t => [t] -> t -> Bool
+_member :: (Eq t) => [t] -> t -> Bool
 _member (x : xs) y
   | x == y = True
   | otherwise = member xs y

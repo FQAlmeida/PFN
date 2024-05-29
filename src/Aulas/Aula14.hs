@@ -28,23 +28,23 @@ ehPrimo x = (x == 2) || not (null ([n | n <- [3, 5 .. sqrt x], x `mod` n == 0]))
 
 -- Exercício 05: Faça uma função que calcule a soma dos dígitos de um número.
 
-somaDigitos :: Integral t => t -> t
+somaDigitos :: (Integral t) => t -> t
 somaDigitos m
-        | m < 10 = m
-        | otherwise = m `mod` 10 + somaDigitos (m `div` 10)
+  | m < 10 = m
+  | otherwise = m `mod` 10 + somaDigitos (m `div` 10)
 
 -- Exercício 06: Faça uma função que calcule a persistência aditiva de um número.
 
 persistenciaAditiva :: (Num a, Integral t) => t -> a
 persistenciaAditiva m
-    | m < 10 = 0
-    | otherwise = 1 + persistenciaAditiva (somaDigitos m)
+  | m < 10 = 0
+  | otherwise = 1 + persistenciaAditiva (somaDigitos m)
 
 -- Exercício 07: Faça uma função que calcule o coeficiente binomial de (m,n).
 fatorial :: (Num a, Enum a) => a -> a
-fatorial m = product [1..m]
+fatorial m = product [1 .. m]
 
-coefBinomial :: Integral a => a -> a -> a
+coefBinomial :: (Integral a) => a -> a -> a
 coefBinomial m n = fatorial m `div` (fatorial n * fatorial (m - n))
 
 -- Exercício 08: Faça uma função que calcule o elemento (i,j) do triângulo de pascal.

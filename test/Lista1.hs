@@ -1,5 +1,5 @@
-import Test.Hspec
 import Listas.Lista1
+import Test.Hspec
 
 main :: IO ()
 main = hspec $ do
@@ -63,8 +63,8 @@ main = hspec $ do
 
   describe "mapEvenIndex" $ do
     it "applies a function to elements at even indices in a list" $ do
-      mapEvenIndex (+1) [1, 2, 3, 4, 5, 6] `shouldBe` [1, 3, 3, 5, 5, 7]
-      mapEvenIndex (*2) [1, 2, 3, 4, 5, 6] `shouldBe` [1, 4, 3, 8, 5, 12]
+      mapEvenIndex (+ 1) [1, 2, 3, 4, 5, 6] `shouldBe` [1, 3, 3, 5, 5, 7]
+      mapEvenIndex (* 2) [1, 2, 3, 4, 5, 6] `shouldBe` [1, 4, 3, 8, 5, 12]
 
   describe "__seriePI" $ do
     it "returns the sum of the series for a given number of terms" $ do

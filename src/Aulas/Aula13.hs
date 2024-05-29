@@ -145,4 +145,4 @@ concatStringDumb [] [] = []
 
 -- Exercício 12: Dada a string “0123456789”, crie uma lista com os dígitos em formato Integer.
 strToNList :: [Char] -> [Integer]
-strToNList = map (\ n -> read [n])
+strToNList = map (\n -> read [n])

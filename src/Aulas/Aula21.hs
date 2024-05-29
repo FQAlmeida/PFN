@@ -56,8 +56,8 @@ writeFileAlice = do
 
 aula21Main :: IO ()
 aula21Main = do
-    readFileAlice
-    readFileAliceContents
-    readFileAliceWith
-    readFileMapUpper
-    writeFileAlice
+  readFileAlice
+  readFileAliceContents
+  readFileAliceWith
+  readFileMapUpper
+  writeFileAlice

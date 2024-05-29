@@ -13,8 +13,7 @@ module Aulas.Aula10 where
 celsiusToFahrenheit :: (Fractional a) => a -> a
 celsiusToFahrenheit temp = temp * 1.8 + 32
 
-
-fahrenheitToCelsius :: Fractional a => a -> a
+fahrenheitToCelsius :: (Fractional a) => a -> a
 fahrenheitToCelsius temp = (temp - 32) / 1.8
 
 -- 2. Uma empresa decidiu dar a seus funcionários um abono de salario, baseando-se nos

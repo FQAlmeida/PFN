@@ -16,14 +16,14 @@ foo a b
 
 -- 2) Declare uma função que receba como parâmetro uma lista de inteiros e retorne uma lista contendo apenas os inteiros impares que ocorrem na lista
 
-impares :: Integral a => [a] -> [a]
+impares :: (Integral a) => [a] -> [a]
 impares (x : xs)
   | x `mod` 2 == 1 = x : impares xs
   | otherwise = impares xs
 impares [] = []
 
 -- 3) Declare uma função que recaba como parametros um elemento e uma lista, a função deve retornar uma lista onde todas ocorrencias deste elemento foram removidas
-remover :: Eq a => a -> [a] -> [a]
+remover :: (Eq a) => a -> [a] -> [a]
 remover n (x : xs)
   | n == x = remover n xs
   | otherwise = x : remover n xs

@@ -13,11 +13,11 @@ duplicaLista :: [a] -> [a]
 duplicaLista (x : xs) = [x, x] ++ duplicaLista xs
 duplicaLista [] = []
 
-_duplicaLista :: Foldable t => t a -> [a]
+_duplicaLista :: (Foldable t) => t a -> [a]
 _duplicaLista = foldr (\x -> (++) [x, x]) []
 
 -- 3 Implemente uma função que recebe uma lista de números inteiros e retorne os números ímpares.
-impares :: Integral a => [a] -> [a]
+impares :: (Integral a) => [a] -> [a]
 impares (x : xs) = if x `mod` 2 == 1 then x : impares xs else impares xs
 impares [] = []
 

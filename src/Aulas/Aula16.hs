@@ -13,10 +13,9 @@ aplica2incr :: Integer -> Integer
 aplica2incr = aplica2 incr
 
 _aplicar2incr :: Integer -> Integer
-_aplicar2incr = aplica2 (+ (1::Integer))
+_aplicar2incr = aplica2 (+ (1 :: Integer))
 
-
-maiorn :: Ord a => (a, a) -> a
+maiorn :: (Ord a) => (a, a) -> a
 maiorn (x, y) = max x y
 
 curry' :: (Ord a) => ((a, a) -> t) -> a -> a -> t
