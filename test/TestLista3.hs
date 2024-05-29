@@ -2,6 +2,18 @@ module TestLista3 where
 
 import qualified Data.HashTable.IO as H
 import Listas.Lista3
+  ( agrupar,
+    cleanPalavra,
+    construirIndice,
+    construirIndiceHashMap,
+    eliminarRep,
+    enumerarLinhas,
+    linhas,
+    numeraPalavras,
+    ordenarPalavras,
+    palavras,
+    printIndices,
+  )
 import Test.Hspec (describe, hspec, it, shouldBe)
 
 mainTestLista3 :: IO ()
