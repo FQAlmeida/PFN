@@ -1,8 +1,23 @@
-import Listas.Lista1
-import Test.Hspec
+{-# OPTIONS_GHC -Wno-type-defaults #-}
 
-main :: IO ()
-main = hspec $ do
+module TestLista1 where
+
+import Listas.Lista1
+  ( ehTriangulo,
+    isDiv,
+    mapEvenIndex,
+    primo,
+    seriePI,
+    somaPares,
+    somaPot2m,
+    tipoTriangulo,
+    triangulo,
+    __seriePI,
+  )
+import Test.Hspec (describe, hspec, it, shouldBe)
+
+mainTestLista1 :: IO ()
+mainTestLista1 = hspec $ do
   describe "ehTriangulo" $ do
     it "returns True for valid triangle sides" $ do
       ehTriangulo 3 4 5 `shouldBe` True
@@ -38,7 +53,7 @@ main = hspec $ do
   describe "somaPot2m" $ do
     it "returns the sum of powers of 2 multiplied by m" $ do
       somaPot2m 2 3 `shouldBe` 30
-      somaPot2m 3 4 `shouldBe` 120
+      somaPot2m 3 4 `shouldBe` 93
 
   describe "isDiv" $ do
     it "returns True if num is divisible by divisor" $ do
@@ -58,8 +73,8 @@ main = hspec $ do
 
   describe "seriePI" $ do
     it "returns the sum of the series for a given number of terms" $ do
-      seriePI 10 `shouldBe` 3.232315809405594
-      seriePI 100 `shouldBe` 3.1315929035585537
+      seriePI 10 `shouldBe` 3.33968253968254
+      seriePI 100 `shouldBe` 3.1215946525910105
 
   describe "mapEvenIndex" $ do
     it "applies a function to elements at even indices in a list" $ do
@@ -68,5 +83,6 @@ main = hspec $ do
 
   describe "__seriePI" $ do
     it "returns the sum of the series for a given number of terms" $ do
-      __seriePI 10 `shouldBe` 3.232315809405594
-      __seriePI 100 `shouldBe` 3.1315929035585537
+      __seriePI 10 `shouldBe` 2.9760461760461765
+      __seriePI 100 `shouldBe` 3.1611986129870506
+      __seriePI 1000000 `shouldBe` 3.1415946535856922

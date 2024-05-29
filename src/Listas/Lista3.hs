@@ -73,23 +73,24 @@ construirIndice doc = do
   let indices = eliminarRep palavras_agrupadas
   return indices
 
-construirIndiceHashMap :: Doc -> IO (HashTable String [Int])
+construirIndiceHashMap :: Doc -> IO (HashTable Palavra [Int])
 construirIndiceHashMap doc = do
   indices <- construirIndice doc
   ht <- H.newSized $ length indices
   forM_ indices (\(is, p) -> H.insert ht p is)
   return ht
 
-printIndices :: HashTable String [Int] -> IO ()
+printIndices :: HashTable Palavra [Int] -> IO String
 printIndices indices = do
-  putStrLn "{"
-  H.mapM_ (\(k, v) -> do putStrLn ("\t" ++ show k ++ ": " ++ show v ++ ",")) indices
-  putStrLn "}"
+  body <- H.foldM (\acc (k, v) -> return $ acc ++ "\t" ++ show k ++ ": " ++ show v ++ ",\n") "" indices
+  let fmt_body = "{\n" ++ body ++ "}"
+  return fmt_body
 
 mainLista3 :: IO ()
 mainLista3 = do
   doc <- readDoc
   indices <- construirIndiceHashMap doc
+  fmt_indices <- printIndices indices
   print "---------------------------------------------------------------------------------"
-  printIndices indices
+  print fmt_indices
   print "---------------------------------------------------------------------------------"

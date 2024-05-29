@@ -8,7 +8,7 @@ ehTriangulo l1 l2 l3 = l1 + l2 > l3 && l1 + l3 > l2 && l3 + l2 > l1
 tipoTriangulo :: (Ord a, Num a) => a -> a -> a -> String
 tipoTriangulo l1 l2 l3
   | l1 == l2 && l2 == l3 = "equilatero"
-  | l1 == l2 || l2 == l3 = "isosceles"
+  | l1 == l2 || l2 == l3 || l1 == l3 = "isosceles"
   | otherwise = "escaleno"
 
 triangulo :: (Ord a, Num a) => a -> a -> a -> String
@@ -45,11 +45,11 @@ _primo m n
   | isqrt m >= n = isDiv m n || _primo m (n + 2)
   | otherwise = False
 
-primo :: (Num t, Integral t) => t -> Bool
-primo m = not (_primo m 2)
+__primo :: (Num t, Integral t) => t -> Bool
+__primo m = not (_primo m 2) && m /= 1
 
-__primo :: (Integral a) => a -> Bool
-__primo n = (n == 2 || odd n) && null ([x | x <- [3, 5 .. isqrt n], n `mod` x == 0])
+primo :: (Integral a) => a -> Bool
+primo n = n /= 1 && (n == 2 || odd n) && null ([x | x <- [3, 5 .. isqrt n], n `mod` x == 0])
 
 _seriePI :: (Integral t1, Fractional t2) => t1 -> t1 -> t1 -> t2
 _seriePI n m a

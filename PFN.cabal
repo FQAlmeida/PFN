@@ -65,6 +65,12 @@ test-suite PFN-test
     type:             exitcode-stdio-1.0
     hs-source-dirs:   test
     main-is:          Main.hs
+    other-modules:
+        TestLista1
+        TestLista2
+        TestLista3
     build-depends:
         , base  ^>=4.17.0.0
         , PFN
+        , hspec
+        , hashtables
