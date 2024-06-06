@@ -1,3 +1,5 @@
+{-# LANGUAGE TupleSections #-}
+
 module Listas.Lista3 where
 
 import Control.Monad (forM_)
@@ -5,7 +7,7 @@ import qualified Data.Bifunctor
 import Data.Char (isAlpha, isDigit, isSpace, toLower)
 import Data.HashTable.IO (BasicHashTable)
 import qualified Data.HashTable.IO as H
-import Data.List (group, groupBy, sort, sortBy)
+import Data.List (group, groupBy, sort, sortOn)
 
 type Doc = String
 
@@ -40,12 +42,12 @@ palavras :: Linha -> [Palavra]
 palavras linha = filter (\p -> length p > 3) $ map cleanPalavra $ words linha
 
 numeraPalavras :: [(Int, Linha)] -> [(Int, Palavra)]
-numeraPalavras linhas_enumeradas = [(n, p) | (n, l) <- linhas_enumeradas, p <- palavras l]
+numeraPalavras = concatMap (\(n, l) -> map (n,) (palavras l))
 
 -- d) Ordenar alfabeticamente as ocorrências das palavras no texto:
 -- ordenar :: [(Int, Palavra)] → [(Int, Palavra)]
 ordenarPalavras :: [(Int, Palavra)] -> [(Int, Palavra)]
-ordenarPalavras = sortBy (\(_, p1) (_, p2) -> compare p1 p2)
+ordenarPalavras = sortOn snd
 
 -- e) Juntar  as  várias  ocorrências  de  cada  palavra,  produzindo,  para  cada  palavra,  a  lista  dos
 -- números das linhas em que a palavra ocorre:
