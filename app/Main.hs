@@ -1,6 +1,6 @@
 module Main where
 
-import Listas.Lista3 (mainLista3)
+import TrabalhoFinal.TrabalhoFinal (mainTrabalhoFinal)
 
 main :: IO ()
-main = mainLista3
+main = mainTrabalhoFinal

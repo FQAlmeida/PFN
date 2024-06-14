@@ -44,6 +44,7 @@ library
         Listas.Lista2
         Listas.Lista3
         Provas.P1
+        TrabalhoFinal.TrabalhoFinal
 
     build-depends:
         , base        ^>=4.17.0.0
@@ -72,6 +73,8 @@ test-suite PFN-test
         TestLista1
         TestLista2
         TestLista3
+        TestAula24
+        TestTrabalhoFinal
     build-depends:
         , base  ^>=4.17.0.0
         , PFN

@@ -1,30 +1,12 @@
 module Aulas.Aula24 where
 
--- Define the binary tree data type
-data ArvoreBin a = Leaf | Node a (ArvoreBin a) (ArvoreBin a) deriving Show
+data ArvoreBin a = Leaf | Node a (ArvoreBin a) (ArvoreBin a) deriving (Show, Eq)
 
--- Define a type alias for binary trees holding only integers
 type ArvoreBinInteiros = ArvoreBin Int
-
--- Example tree creation
-exampleTree :: ArvoreBinInteiros
-exampleTree =
-  Node
-    5
-    ( Node
-        3
-        (Node 1 Leaf Leaf)
-        (Node 4 Leaf Leaf)
-    )
-    ( Node
-        8
-        (Node 6 Leaf Leaf)
-        (Node 10 Leaf Leaf)
-    )
 
 allTreeValues :: (Ord a) => ArvoreBin a -> [a]
 allTreeValues Leaf = []
-allTreeValues (Node value left right) = allNodeValues left ++ [value] ++ allNodeValues right
+allTreeValues (Node value left right) = allTreeValues left ++ [value] ++ allTreeValues right
 
 allLeafValues :: (Ord a) => ArvoreBin a -> [a]
 allLeafValues Leaf = []
@@ -45,26 +27,29 @@ insertNodeValue (Node v l r) value
 
 updateNodeValue :: (Ord a) => ArvoreBin a -> a -> a -> ArvoreBin a
 updateNodeValue Leaf _ _ = Leaf
-updateNodeValue (Node v l r) oldValue newValue
-  | oldValue == v = Node newValue l r
-  | oldValue < v = Node v (updateNodeValue l oldValue newValue) r
-  | otherwise = Node v l (updateNodeValue r oldValue newValue)
+updateNodeValue tree oldValue newValue
+  | tree /= trimmedTree = insertNodeValue trimmedTree newValue
+  | otherwise = tree
+  where
+    trimmedTree = removeNodeValue tree oldValue
 
-removeNodeValue :: Ord a => a -> ArvoreBin a -> ArvoreBin a
-removeNodeValue _ Leaf = Leaf
-removeNodeValue x (Node val left right)
-    | x < val   = Node val (removeNodeValue x left) right
-    | x > val   = Node val left (removeNodeValue x right)
-    | otherwise = removeNode (Node val left right)
-    where
-        removeNode :: ArvoreBin a -> ArvoreBin a
-        removeNode Leaf = Leaf
-        removeNode (Node _ Leaf r) = r
-        removeNode (Node _ l Leaf) = l
-        removeNode (Node _ l r) = Node minRight l (removeNodeValue minRight r)
-            where
-                minRight = findMin right
-                findMin (Node v Leaf _) = v
-                findMin (Node _ lf _) = findMin lf
-                findMin Leaf = error "Empty tree"
+removeNodeValue :: (Ord a) => ArvoreBin a -> a -> ArvoreBin a
+removeNodeValue Leaf _ = Leaf
+removeNodeValue (Node v l r) value
+  | value < v = Node v (removeNodeValue l value) r
+  | value > v = Node v l (removeNodeValue r value)
+  | otherwise = removeNode (Node v l r)
+  where
+    removeNode Leaf = Leaf
+    removeNode (Node _ Leaf right) = right
+    removeNode (Node _ left Leaf) = left
+    removeNode (Node _ left right) = Node minRight left (removeNodeValue right minRight)
+      where
+        minRight = findMin right
+        findMin (Node val Leaf _) = val
+        findMin (Node _ lf _) = findMin lf
+        findMin Leaf = error "Empty tree"
 
+fromList :: (Ord a) => [a] -> ArvoreBin a
+fromList (x : xs) = foldl insertNodeValue (Node x Leaf Leaf) xs
+fromList [] = Leaf
