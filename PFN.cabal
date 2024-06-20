@@ -43,6 +43,8 @@ library
         Listas.Lista1
         Listas.Lista2
         Listas.Lista3
+        Modulos.Principal
+        Modulos.Biblioteca
         Provas.P1
         TrabalhoFinal.TrabalhoFinal
 
